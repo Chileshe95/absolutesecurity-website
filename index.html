@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2VSLJSPG8P"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2VSLJSPG8P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2VSLJSPG8P');
+  </script>
 
-  gtag('config', 'G-2VSLJSPG8P');
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Absolute Security Limited</title>
   <style>
-    /* Basic CSS Reset */
     * {
       margin: 0;
       padding: 0;
@@ -22,9 +21,9 @@
     }
     body {
       font-family: Arial, sans-serif;
-      line-height: 1.6;
       background-color: #f4f4f4;
       color: #333;
+      line-height: 1.6;
     }
     header {
       background: #222;
@@ -54,19 +53,39 @@
       text-decoration: none;
       font-weight: bold;
     }
-    .hero {
-      background: url('hero.jpg') no-repeat center center/cover;
+
+    /* Carousel Styles */
+    .carousel {
+      position: relative;
+      width: 100%;
       height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
+    }
+    .carousel img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .carousel img.active {
+      opacity: 1;
+    }
+    .carousel-caption {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
       color: #fff;
-      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1.5rem;
     }
-    .hero h2 {
-      font-size: 3rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-    }
+
     section {
       padding: 40px 0;
     }
@@ -120,9 +139,6 @@
       nav ul li {
         margin: 5px 0;
       }
-      .hero h2 {
-        font-size: 2.5rem;
-      }
     }
   </style>
 </head>
@@ -141,9 +157,12 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <h2>Your Safety, Our Priority</h2>
+  <!-- Carousel Hero Section -->
+  <div class="carousel">
+    <img src="assets/guards.jpg" class="active" alt="Guards" />
+    <img src="assets/cctv.jpg" alt="CCTV" />
+    <img src="assets/cashTransit.jpg" alt="Cash Transit" />
+    <div class="carousel-caption">Your Safety, Our Priority</div>
   </div>
 
   <!-- About Section -->
@@ -185,7 +204,6 @@
   <section id="contact">
     <div class="container contact">
       <h2>Contact Us</h2>
-      <!-- Replace the form action URL with your preferred form handler -->
       <form action="https://formspree.io/f/yourformid" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="_replyto" placeholder="Your Email" required />
@@ -199,5 +217,17 @@
   <footer>
     <p>&copy; 2025 Absolute Security Limited. All rights reserved.</p>
   </footer>
+
+  <!-- Carousel Script -->
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.carousel img');
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 4000); // Change image every 4 seconds
+  </script>
 </body>
 </html>
